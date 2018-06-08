@@ -2,7 +2,7 @@ import sys
 from classes import Deploy
 from flask import Flask, jsonify, request
 
-def create_app(file, debug=False):
+def create_app(file, debug=True):
     app = Flask(__name__)
     app.debug = debug
     app.deploy_json = Deploy(file)
@@ -14,11 +14,11 @@ with open('deploy.json') as f:
 @app.route('/', methods = ['POST'])
 def index():
     data = request.get_json()
-    print(app.deploy_json)
+    print(app.deploy_json.payload)
     # Check for branch and token keys
     if data.get('branch') and data.get('token'):
         print('Token and branch keys exist')
     return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
-    app.run(debug=True, port='8000', host='0.0.0.0')
+    app.run(port='8000', host='0.0.0.0')
