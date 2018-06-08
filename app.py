@@ -1,3 +1,4 @@
+import sys
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
@@ -10,4 +11,9 @@ def deploy():
     return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000, host='0.0.0.0')
+    try:
+        with open('deploy.json') as f:
+            app.run(debug=True, port=8000, host='0.0.0.0')
+    except:
+        print('Missing deploy.json file.')
+        sys.exit(1)
