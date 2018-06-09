@@ -3,8 +3,7 @@ import json
 class Deploy():
 
     def __init__(self, file):
-        # self.payload = self.parse_json(file)
-        self.test = "test"
+        self.payload = self.parse_json(file)
 
     def parse_json(self, file):
-        return(json.loads(file))
+        return(json.load(file))
