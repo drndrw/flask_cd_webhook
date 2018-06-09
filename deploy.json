@@ -1,0 +1,10 @@
+{
+  "sample_repository":
+    {
+      "master":
+        {
+    			"token": "abc123",
+    			"sequence": ["cd /home/Projects/dev_server"]
+    		}
+    }
+}
