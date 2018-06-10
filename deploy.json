@@ -6,8 +6,14 @@
           "name": "Master Build 1",
           "description": "Build for production server 1",
     			"token": "abc123",
-    			"sequence": ["cd /home/Projects/dev_server"]
-    		}
+    			"sequence": ["cd /home/Projects/prod_server_1"]
+    		},
+        {
+          "name": "Master Build 2",
+          "description": "Build for production server 2",
+          "token": "abc234",
+          "sequence": ["cd /home/Projects/prod_server_2"]
+        }
       ]
     }
 }
