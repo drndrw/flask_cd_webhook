@@ -17,7 +17,10 @@ def index():
     print(app.deploy_json.payload)
     # Check for branch and token keys
     if data.get('repository') and data.get('branch') and data.get('token'):
+        # Check of respository exists in deploy.json
         print('Repository, token and branch keys exist')
+        if app.deploy_json.payload.get(data.get('repository')):
+            print('repository exists')
     return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
