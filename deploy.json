@@ -1,10 +1,13 @@
 {
   "sample_repository":
     {
-      "master":
+      "master": [
         {
+          "name": "Master Build 1",
+          "description": "Build for production server 1",
     			"token": "abc123",
     			"sequence": ["cd /home/Projects/dev_server"]
     		}
+      ]
     }
 }
