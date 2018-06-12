@@ -14,7 +14,6 @@ with open('deploy.json') as f:
 @app.route('/', methods = ['POST'])
 def index():
     data = request.get_json()
-    # print(app.deploy_json.payload)
     # Check for branch and token keys
     if data.get('repository') and data.get('branch') and data.get('token'):
         # Check of respository exists in deploy.json
@@ -27,7 +26,9 @@ def index():
                 print('branch exists inside of repo')
                 # Iterate through build tokens
                 for token in app.deploy_json.payload[data.get('repository')][data.get('branch')]:
-                    print(token['token'])
+                    if data.get('token') == token['token']:
+                        print('tokens match')
+                        return jsonify({'repository': data['repository'], 'branch': data['branch'], 'name': token['name'], 'description': token['description']})
     return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
