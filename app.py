@@ -16,8 +16,6 @@ def index():
     data = request.get_json()
     # Check for branch and token keys
     if data.get('repository') and data.get('branch') and data.get('token'):
-        # Check of respository exists in deploy.json
-        # print('Repository, token and branch keys exist')
         # Check if repository name from request exists in deploy.json
         if app.deploy_json.payload.get(data.get('repository')):
             print('repository exists')
@@ -29,6 +27,9 @@ def index():
                     if data.get('token') == token['token']:
                         print('tokens match')
                         return jsonify({'repository': data['repository'], 'branch': data['branch'], 'name': token['name'], 'description': token['description']})
+    else:
+        # return jsonify({'error': 'Missing keys', 'missing': ['repository' if not data.get('repository') else None, 'branch' if not data.get('branch') else None, 'token' if not data.get('token') else None]})
+        return jsonify({'error': 'Missing keys', 'missing': [token for token in ['repository', 'branch', 'token'] if not data.get(token)]})
     return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
