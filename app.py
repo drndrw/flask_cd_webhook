@@ -27,6 +27,8 @@ def index():
                     if data.get('token') == token['token']:
                         print('tokens match')
                         return jsonify({'repository': data['repository'], 'branch': data['branch'], 'name': token['name'], 'description': token['description']})
+        else:
+            return jsonify({'error': 'Invalid repository'})
     else:
         # return jsonify({'error': 'Missing keys', 'missing': ['repository' if not data.get('repository') else None, 'branch' if not data.get('branch') else None, 'token' if not data.get('token') else None]})
         return jsonify({'error': 'Missing keys', 'missing': [token for token in ['repository', 'branch', 'token'] if not data.get(token)]})
