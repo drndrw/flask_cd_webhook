@@ -6,12 +6,14 @@
           "name": "Master Build 1",
           "description": "Build for production server 1",
     			"token": "abc123",
+          "path": "/path/to/project1",
     			"sequence": ["cd /home/Projects/prod_server_1"]
     		},
         {
           "name": "Master Build 2",
           "description": "Build for production server 2",
           "token": "abc234",
+          "path": "/path/to/project2",
           "sequence": ["cd /home/Projects/prod_server_2"]
         }
       ]
