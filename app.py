@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from classes import Deploy
 from flask import Flask, jsonify, request
 
@@ -26,6 +27,9 @@ def index():
                 for token in app.deploy_json.payload[data.get('repository')][data.get('branch')]:
                     if data.get('token') == token['token']:
                         print('tokens match')
+                        # Run process from sequence array if tokens match
+                        for process in token['sequence']:
+                            subprocess.run(process.split(' '))
                         return jsonify({'repository': data['repository'], 'branch': data['branch'], 'name': token['name'], 'description': token['description']})
                 # Return invalid token error if invalid token
                 return jsonify({'error': 'Invalid token'})
