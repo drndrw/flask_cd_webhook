@@ -35,7 +35,6 @@ def index():
             return jsonify({'error': 'Invalid repository'})
     else:
         return jsonify({'error': 'Missing keys', 'missing': [token for token in ['repository', 'branch', 'token'] if not data.get(token)]})
-    return jsonify({'route':'deploy'})
 
 if __name__ == '__main__':
     app.run(port='8000', host='0.0.0.0')
