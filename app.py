@@ -28,8 +28,7 @@ def index():
                     if data.get('token') == token['token']:
                         print('tokens match')
                         # Run process from sequence array if tokens match
-                        for process in token['sequence']:
-                            subprocess.run(process.split(' '))
+                        subprocess.run(' & '.join(token['sequence']), cwd=token['path'], shell=True)
                         return jsonify({'repository': data['repository'], 'branch': data['branch'], 'name': token['name'], 'description': token['description']})
                 # Return invalid token error if invalid token
                 return jsonify({'error': 'Invalid token'})
